@@ -12,16 +12,27 @@
 
 </ion-header>
 
-
 <ion-content padding>
+  <form novalidate [formGroup]="userForm">
+     <ion-item class="validator-error" *ngIf="isNotFound">Email or password are incorrect, please<br/> check and try again</ion-item>
     <ion-item>
-      <ion-label floating >Email Address</ion-label>
-      <ion-input type="text" [(ngModel)]="user.email" ></ion-input>
+     <ion-label floating >Email Address</ion-label>
+     <ion-input type="email" [(ngModel)]="user.email" formControlName="username" (keypress)="userExist()" ></ion-input>
+   </ion-item>
+   <ion-item  class="validator-error" *ngIf="userForm.controls.username.hasError('required') && userForm.controls.username.touched">Please provide your email</ion-item>
+   <ion-item  class="validator-error" *ngIf="userForm.controls.username.hasError('pattern') && userForm.controls.username.touched">Your email is invalid</ion-item>
+   <ion-item  class="validator-error" *ngIf="userForm.controls.username.hasError('length') && userForm.controls.username.touched">Email must be longer than 5 characters</ion-item>
+   <ion-item  class="validator-error" *ngIf="isEinvalid">Your email worng</ion-item>
+   <ion-item>
+     <ion-label floating >Password</ion-label>
+     <ion-input type="password" [(ngModel)]="user.password" formControlName="password" (keypress)="userExist()" ></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label floating >Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-    </ion-item>
-    <button ion-button (click)="login(user)" block>Login</button>
-    <button ion-button (click)="register()" color="light" block>Resgiter</button>
+    <ion-item class="validator-error" *ngIf="userForm.controls.password.hasError('required') && userForm.controls.password.touched">Please provide a password</ion-item>
+    <ion-item class="validator-error" *ngIf="userForm.controls.password.hasError('pattern') && userForm.controls.password.touched">Password must contain number, </ion-item>
+    <ion-item class="validator-error" *ngIf="userForm.controls.password.hasError('minLength') && userForm.controls.password.touched">Please provide a password</ion-item>
+    <ion-item class="validator-error" *ngIf="isPinvalid">Your password is wrong</ion-item>
+    <button ion-button (click)="login(user)"  block>Login</button>
+   <button ion-button (click)="register()" color="light" block>Resgiter</button>    
+  </form>
+  
 </ion-content>

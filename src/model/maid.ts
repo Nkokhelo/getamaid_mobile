@@ -11,4 +11,4 @@ export interface Maid
     role:string;
     imageUrl:string;
     user_id:string;
-}
+}  

@@ -1,0 +1,28 @@
+<!--
+  Generated template for the AllmaidsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Maids</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item  *ngFor="let m of allmaids | async" (click)="open(m)">
+    <ion-avatar item-left>
+      <img src="img/marty-avatar.png">
+    </ion-avatar>
+    <h2>{{m.fullname}} {{m.surname}}</h2>
+    <p>{{m.idnumber}}</p>
+
+  </ion-item>
+</ion-content>

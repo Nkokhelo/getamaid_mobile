@@ -12,15 +12,22 @@
 
 </ion-header>
 
-
 <ion-content padding>
-    <ion-item>
-      <ion-label floating >Email Address</ion-label>
-      <ion-input type="text" [(ngModel)]="user.email" ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating >Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-    </ion-item>
-    <button ion-button (click)="register(user)" color="light" block>Resgiter</button>
+    <form novalidate [formGroup]="userForm">
+        <ion-item>
+          <ion-label floating >Email Address</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email"formControlName="username" (keypress)="remove()" ></ion-input>
+        </ion-item>
+        <ion-item  class="validator-error" *ngIf="userForm.controls.username.hasError('required') && userForm.controls.username.touched">Please provide your email</ion-item>
+        <ion-item  class="validator-error" *ngIf="userForm.controls.username.hasError('pattern') && userForm.controls.username.touched">Email must be at least 5 characters long</ion-item>
+        <ion-item  class="validator-error" *ngIf="exist ">Email already exist!</ion-item>
+        <ion-item>
+          <ion-label floating >Password</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item class="validator-error" *ngIf="userForm.controls.password.hasError('required') && userForm.controls.password.touched">Please provide a password</ion-item>
+        <ion-item class="validator-error" *ngIf="userForm.controls.password.hasError('pattern') && userForm.controls.password.touched">Passwords should be at least 8 characters long and should contain one number, one character and one special character</ion-item>
+        <ion-item class="validator-error" *ngIf="userForm.controls.password.hasError('minlength') && userForm.controls.password.touched">Please provide a password</ion-item>
+        <button ion-button (click)="register(user)"  block>Register</button>
+      </form>
 </ion-content>
