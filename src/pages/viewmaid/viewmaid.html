@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>viewmaid</ion-title>
+    <ion-title>{{maid?.fullname}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,5 +15,5 @@
 
 <ion-content padding>
   <ion-item >Fullnames {{ maid?.fullname }}</ion-item>
-  <ion-item ><button ion-button full >Hire {{maid?.fullname}}</button></ion-item>
+  <ion-item ><button ion-button full (click)="hire(maid)" >Hire {{maid?.fullname}}</button></ion-item>
 </ion-content>

@@ -85,8 +85,7 @@ export class LoginPage {
                     {
                       this.showToast("Database error!!!, pleaser try agail")
                     }
-                  })
-                })
+                  })})
               }
             })});
        }
@@ -95,13 +94,13 @@ export class LoginPage {
    }
    catch(e)
    {
-     if(e.code =='auth/network-request-failed')
+     if(e.code == "auth/network-request-failed")
      {
       this.showToast("Network error, please make sure you're connected and try again.");
        loading.dismiss();
        return;
      }
-     else if(e.code ="auth/user-not-found")
+     else if(e.code == "auth/user-not-found")
      {
         this.isNotFound = true;
         loading.dismiss();

@@ -1,0 +1,39 @@
+<!--
+  Generated template for the JobPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>job</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label floating >Job Duration</ion-label>
+    <ion-input type="text" [(ngModel)]="job.duration" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Duration Type</ion-label>
+    <ion-select [(ngModel)]="setUp.gender" multiple="false" (click)="disableThem()">
+      <ion-option value="h" >Hour(s)</ion-option>
+      <ion-option value="d" >Day(s)</ion-option>
+      <ion-option value="w" >Week(s)</ion-option>
+      <ion-option value="m" >Month(s)</ion-option>
+    </ion-select>
+  </ion-item>
+ 
+
+  <ion-item>
+    <ion-label floating >Description</ion-label>
+    <textarea type="text" [(ngModel)]="setUp.age"></textarea>
+  </ion-item>
+  <button ion-button (click)="addJob(job)" block>Proceed</button>
+  <button ion-button (click)="Cancel()" block>Cancel Request</button>
+</ion-content>
